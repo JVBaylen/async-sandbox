@@ -38,3 +38,24 @@ document.getElementById("btn-chain").addEventListener("click", () => {
       out.textContent += "Error: " + err.message;
     });
 });
+
+document.getElementById("btn-async").addEventListener("click", async () => {
+  const out = document.getElementById("out-async");
+
+  out.textContent = "Starting async/await...\n";
+
+  try {
+    const login = await fakeApi("Login", 500);
+    out.textContent += login + "\n";
+
+    const profile = await fakeApi("Fetch Profile", 700);
+    out.textContent += profile + "\n";
+
+    const posts = await fakeApi("Fetch Posts", 500);
+    out.textContent += posts + "\n";
+
+    out.textContent += "All done!";
+  } catch (err) {
+    out.textContent += "Error: " + err.message;
+  }
+});
